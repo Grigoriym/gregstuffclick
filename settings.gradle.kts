@@ -8,4 +8,5 @@ pluginManagement {
 rootProject.name = "gregstuffclick"
 
 include(":site")
-
+include(":uikit")
+include(":core")
