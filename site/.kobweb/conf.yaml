@@ -1,0 +1,14 @@
+site:
+  title: "Gregstuffclick"
+
+server:
+  files:
+    dev:
+      contentRoot: "build/processedResources/js/main/public"
+      script: "build/kotlin-webpack/js/developmentExecutable/gregstuffclick.js"
+      api: "build/libs/gregstuffclick.jar"
+    prod:
+      script: "build/kotlin-webpack/js/productionExecutable/gregstuffclick.js"
+      siteRoot: ".kobweb/site"
+
+  port: 8080
