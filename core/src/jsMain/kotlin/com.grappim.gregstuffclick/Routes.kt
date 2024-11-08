@@ -17,4 +17,8 @@ sealed class Routes {
     data object Projects : Routes() {
         const val path: String = "/projects"
     }
+
+    data object Blog : Routes() {
+        const val path: String = "/blog"
+    }
 }

@@ -54,6 +54,11 @@ fun NavHeader(modifier: Modifier = Modifier) {
             }, content = {
                 Text("Projects")
             })
+            Button(onClick = {
+                ctx.router.navigateTo(Routes.Blog.path)
+            }, content = {
+                Text("Blog")
+            })
 
             Spacer()
 
@@ -66,6 +71,7 @@ fun NavHeader(modifier: Modifier = Modifier) {
 private fun ColorModeButton(modifier: Modifier = Modifier) {
     var colorMode by ColorMode.currentState
     IconButton(
+        modifier = modifier,
         onClick = {
             colorMode = colorMode.opposite
         }
