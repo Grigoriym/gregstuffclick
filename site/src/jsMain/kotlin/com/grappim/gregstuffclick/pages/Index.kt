@@ -17,7 +17,7 @@ import widgets.TextLn
 @Page
 @Composable
 fun HomePage() {
-    PageLayout("Main") {
+    PageLayout("Home") {
         Column(
             modifier = Modifier
                 .padding(16.px)
