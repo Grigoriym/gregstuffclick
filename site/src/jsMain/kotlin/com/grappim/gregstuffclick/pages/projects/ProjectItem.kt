@@ -4,6 +4,6 @@ data class ProjectItem(
     val name: String,
     val githubLink: String,
     val description: String,
-    val googlePlayLink: String? = null
+    val googlePlayLink: String? = null,
+    val fdroidLink: String? = null
 )
-

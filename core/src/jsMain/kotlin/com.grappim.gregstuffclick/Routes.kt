@@ -10,10 +10,6 @@ sealed class Routes {
         const val path: String = "/resume"
     }
 
-    data object AboutMe : Routes() {
-        const val path: String = "/aboutme"
-    }
-
     data object Projects : Routes() {
         const val path: String = "/projects"
     }

@@ -23,9 +23,14 @@ class ExperienceItemGenerator {
             companyName = "Delivery Hero",
             positions = listOf(
                 ExperiencePositionItem(
+                    position = "Software Engineer III",
+                    timeline = "Apr 2025 - Now",
+                    points = emptyList()
+                ),
+                ExperiencePositionItem(
                     position = "Software Engineer II",
-                    timeline = "Dec 2022 – Now",
-                    points = listOf()
+                    timeline = "Dec 2022 – Apr 2025",
+                    points = emptyList()
                 )
             )
         )
@@ -89,7 +94,7 @@ class ExperienceItemGenerator {
             positions = listOf(
                 ExperiencePositionItem(
                     position = "Android Developer, ForteKassa",
-                    timeline = "Apr 2019 – Jun 202",
+                    timeline = "Apr 2019 – Jun 2021",
                     points = listOf(
                         "Supervised and trained 2 interns, who were each awarded a job offer",
                         "Conducted android developer interviews and onboarded 2 new hires",

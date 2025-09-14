@@ -10,24 +10,38 @@ import com.varabyte.kobweb.compose.foundation.layout.Row
 import com.varabyte.kobweb.compose.foundation.layout.Spacer
 import com.varabyte.kobweb.compose.ui.Alignment
 import com.varabyte.kobweb.compose.ui.Modifier
+import com.varabyte.kobweb.compose.ui.modifiers.borderBottom
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxSize
 import com.varabyte.kobweb.compose.ui.modifiers.fillMaxWidth
+import com.varabyte.kobweb.compose.ui.modifiers.padding
 import com.varabyte.kobweb.core.rememberPageContext
 import com.varabyte.kobweb.silk.components.forms.Button
 import com.varabyte.kobweb.silk.components.icons.fa.FaHouse
 import com.varabyte.kobweb.silk.components.icons.fa.FaMoon
 import com.varabyte.kobweb.silk.components.icons.fa.FaSun
+import com.varabyte.kobweb.silk.style.CssStyle
+import com.varabyte.kobweb.silk.style.base
+import com.varabyte.kobweb.silk.style.toModifier
 import com.varabyte.kobweb.silk.theme.colors.ColorMode
+import com.varabyte.kobweb.silk.theme.colors.palette.border
+import com.varabyte.kobweb.silk.theme.colors.palette.toPalette
+import org.jetbrains.compose.web.css.LineStyle
+import org.jetbrains.compose.web.css.cssRem
 import org.jetbrains.compose.web.css.px
 import org.jetbrains.compose.web.dom.Text
 import widgets.IconButton
+
+val NavHeaderStyle = CssStyle.base {
+    Modifier.fillMaxWidth()
+        .padding(left = 1.cssRem, right = 1.cssRem, top = 1.cssRem, bottom = 1.cssRem)
+        .borderBottom(width = 1.px, style = LineStyle.Solid, color = colorMode.toPalette().border)
+}
 
 @Composable
 fun NavHeader(modifier: Modifier = Modifier) {
     val ctx = rememberPageContext()
     Box(
-        modifier = modifier
-            .fillMaxWidth()
+        modifier = modifier.then(NavHeaderStyle.toModifier())
     ) {
         Row(
             modifier = Modifier.fillMaxSize(),
@@ -45,19 +59,9 @@ fun NavHeader(modifier: Modifier = Modifier) {
                 Text("Resume")
             })
             Button(onClick = {
-                ctx.router.navigateTo(Routes.AboutMe.path)
-            }, content = {
-                Text("About me")
-            })
-            Button(onClick = {
                 ctx.router.navigateTo(Routes.Projects.path)
             }, content = {
                 Text("Projects")
-            })
-            Button(onClick = {
-                ctx.router.navigateTo(Routes.Blog.path)
-            }, content = {
-                Text("Blog")
             })
 
             Spacer()

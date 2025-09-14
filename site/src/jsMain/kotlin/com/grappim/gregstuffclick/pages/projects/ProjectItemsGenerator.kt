@@ -17,7 +17,8 @@ class ProjectItemsGenerator {
             name = "HateItOrRateIt",
             githubLink = "https://github.com/Grigoriym/HateItOrRateIt",
             description = "Application to track the products you like/dislike",
-            googlePlayLink = "https://play.google.com/store/apps/details?id=com.grappim.hateitorrateit"
+            googlePlayLink = "https://play.google.com/store/apps/details?id=com.grappim.hateitorrateit",
+            fdroidLink = "https://f-droid.org/en/packages/com.grappim.hateitorrateit.fdroid/"
         )
 
     private fun getGregstuffclick(): ProjectItem =
