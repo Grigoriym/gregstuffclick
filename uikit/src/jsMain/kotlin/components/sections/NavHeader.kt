@@ -59,19 +59,9 @@ fun NavHeader(modifier: Modifier = Modifier) {
                 Text("Resume")
             })
             Button(onClick = {
-                ctx.router.navigateTo(Routes.AboutMe.path)
-            }, content = {
-                Text("About me")
-            })
-            Button(onClick = {
                 ctx.router.navigateTo(Routes.Projects.path)
             }, content = {
                 Text("Projects")
-            })
-            Button(onClick = {
-                ctx.router.navigateTo(Routes.Blog.path)
-            }, content = {
-                Text("Blog")
             })
 
             Spacer()
