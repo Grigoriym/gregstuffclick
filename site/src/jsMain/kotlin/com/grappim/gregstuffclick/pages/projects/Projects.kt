@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import com.grappim.gregstuffclick.Routes
 import com.grappim.gregstuffclick.di.DiContainer
 import com.grappim.gregstuffclick.di.projectItemsGenerator
+import com.grappim.gregstuffclick.fdroidBadgeImagePath
 import com.grappim.gregstuffclick.googleBadgeImagePath
 import com.varabyte.kobweb.compose.foundation.layout.Arrangement
 import com.varabyte.kobweb.compose.foundation.layout.Column
@@ -79,6 +80,15 @@ private fun ColumnScope.ProjectItems(items: List<ProjectItem>) {
                         variant = UncoloredLinkVariant
                     ) {
                         Image(src = googleBadgeImagePath, height = 80)
+                    }
+                }
+
+                if (!projectItem.fdroidLink.isNullOrEmpty()) {
+                    Link(
+                        projectItem.fdroidLink,
+                        variant = UncoloredLinkVariant
+                    ) {
+                        Image(src = fdroidBadgeImagePath, height = 80)
                     }
                 }
             }
