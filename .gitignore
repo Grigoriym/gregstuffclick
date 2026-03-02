@@ -15,3 +15,5 @@ kotlin-js-store
 
 # Kotlin ignores
 .kotlin
+
+local.properties

@@ -1,7 +1,9 @@
 [versions]
-jetbrains-compose = "1.8.2"
-kobweb = "0.23.1"
-kotlin = "2.2.10"
+# https://github.com/JetBrains/compose-multiplatform/releases
+jetbrains-compose = "1.10.1"
+# https://github.com/varabyte/kobweb/releases
+kobweb = "0.24.0"
+kotlin = "2.3.10"
 
 [libraries]
 compose-html-core = { module = "org.jetbrains.compose.html:html-core", version.ref = "jetbrains-compose" }

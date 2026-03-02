@@ -57,6 +57,11 @@ private fun ColumnScope.ProjectItems(items: List<ProjectItem>) {
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.SpaceEvenly
             ) {
+                if (!projectItem.logoPath.isNullOrEmpty()) {
+                    Image(src = projectItem.logoPath, height = 80)
+                    CiceroSpacer(height = 8.px)
+                }
+
                 Row(
                     verticalAlignment = Alignment.CenterVertically
                 ) {

@@ -26,7 +26,7 @@ fun HomePage() {
         ) {
             TextLn("Hello There, I am Grigoriy")
             TextLn("Android Software Engineer")
-            TextLn("With Flutter and Golang experience")
+            TextLn("With Flutter and Backend experience")
             TextLn("Right now I live in Berlin, Germany")
             TextLn("I am from Kazakhstan, Taraz")
 

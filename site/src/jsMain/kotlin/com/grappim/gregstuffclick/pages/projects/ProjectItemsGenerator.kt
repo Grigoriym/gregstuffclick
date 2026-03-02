@@ -1,44 +1,40 @@
 package com.grappim.gregstuffclick.pages.projects
 
+import com.grappim.gregstuffclick.hiorLogoPath
+import com.grappim.gregstuffclick.mukkLogoPath
+import com.grappim.gregstuffclick.taigaMobileLogoPath
+
 class ProjectItemsGenerator {
-    fun generateProjectItems(): List<ProjectItem> {
-        val result = mutableListOf<ProjectItem>()
-
-        result.add(getHior())
-        result.add(getGregstuffclick())
-        result.add(getAipal())
-        result.add(getDocuVault())
-
-        return result.toList()
-    }
+    fun generateProjectItems(): List<ProjectItem> = listOf(
+        getHior(),
+        getMukk(),
+        getTaigaMobileNova()
+    )
 
     private fun getHior(): ProjectItem =
         ProjectItem(
             name = "HateItOrRateIt",
             githubLink = "https://github.com/Grigoriym/HateItOrRateIt",
-            description = "Application to track the products you like/dislike",
+            description = "Track products you love and loathe. Because you forget which coffee brand made you happy.",
+            logoPath = hiorLogoPath,
             googlePlayLink = "https://play.google.com/store/apps/details?id=com.grappim.hateitorrateit",
             fdroidLink = "https://f-droid.org/en/packages/com.grappim.hateitorrateit.fdroid/"
         )
 
-    private fun getGregstuffclick(): ProjectItem =
+    private fun getMukk(): ProjectItem =
         ProjectItem(
-            name = "gregstuffclick",
-            githubLink = "https://github.com/Grigoriym/gregstuffclick",
-            description = "This website",
+            name = "Mukk",
+            githubLink = "https://github.com/Grigoriym/Mukk",
+            description = "Desktop music player built with Kotlin Multiplatform. Clean UI, actual functionality.",
+            logoPath = mukkLogoPath
         )
 
-    private fun getAipal(): ProjectItem =
+    private fun getTaigaMobileNova(): ProjectItem =
         ProjectItem(
-            name = "AiPal",
-            githubLink = "https://github.com/Grigoriym/AiPal",
-            description = "Your personal AI friend to learn a language",
-        )
-
-    private fun getDocuVault(): ProjectItem =
-        ProjectItem(
-            name = "DocuVault",
-            githubLink = "https://github.com/Grigoriym/DocuVault",
-            description = "App to store the documents ",
+            name = "TaigaMobileNova",
+            githubLink = "https://github.com/Grigoriym/TaigaMobileNova",
+            description = "Revived fork of the discontinued Taiga mobile client. Project management without the desktop.",
+            logoPath = taigaMobileLogoPath,
+            googlePlayLink = "https://play.google.com/store/apps/details?id=com.grappim.taigamobile"
         )
 }
