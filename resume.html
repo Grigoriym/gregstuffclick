@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Resume — Grigoriy Mikhalchuk</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script>
+      (function () {
+        var theme = localStorage.getItem('gregstuffclick:theme');
+        document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <site-header></site-header>
+    <main>
+      <div class="resume-header">
+        <h1>Grigoriy Mikhalchuk</h1>
+        <p>Software Engineer | Germany, Berlin</p>
+        <p>grigoriymikhalchuk@gmail.com</p>
+      </div>
+      <h2>Work Experience</h2>
+      <div class="experience" id="experience"></div>
+    </main>
+    <site-footer></site-footer>
+    <script type="module" src="/scripts/resume.js"></script>
+  </body>
+</html>

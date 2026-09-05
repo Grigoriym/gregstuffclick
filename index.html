@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grigoriy Mikhalchuk</title>
+    <link rel="icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/styles/style.css" />
+    <script>
+      (function () {
+        var theme = localStorage.getItem('gregstuffclick:theme');
+        document.documentElement.setAttribute('data-theme', theme === 'light' ? 'light' : 'dark');
+      })();
+    </script>
+  </head>
+  <body>
+    <site-header></site-header>
+    <main>
+      <div class="bio">
+        <p>Hello There, I am Grigoriy</p>
+        <p>Android Software Engineer</p>
+        <p>With Flutter, KMP and Backend experience</p>
+        <p>Right now I live in Berlin, Germany</p>
+        <p>I am from Kazakhstan, Taraz</p>
+      </div>
+      <p>
+        This is the <a href="https://github.com/Grigoriym/gregstuffclick">Github repo</a> of this website.
+      </p>
+    </main>
+    <site-footer></site-footer>
+    <script type="module" src="/scripts/main.js"></script>
+  </body>
+</html>

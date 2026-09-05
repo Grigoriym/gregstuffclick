@@ -4,87 +4,68 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-This is a personal website project built with Kobweb, a Kotlin/Compose web framework. The site includes pages for resume, projects, about me, and blog sections.
+Grigoriy Mikhalchuk's personal website: home, resume, projects, and blog pages. It is a plain,
+framework-free static site written in TypeScript, with no client-side router and no UI
+framework — real multi-page `.html` files, native Web Components for shared header/footer
+chrome, and small TypeScript modules bundled by esbuild.
 
 ## Build System & Commands
 
-The project uses Gradle with Kotlin DSL and is structured as a multi-module Kotlin Multiplatform project.
-
-### Development Commands
 ```bash
-cd site
-kobweb run
-```
-This starts the development server on http://localhost:8080 with live reload.
-
-### Production Commands
-```bash
-cd site
-kobweb export
-kobweb run --env prod
-kobweb run --env prod --notty  # For cloud deployment
+npm install       # one-time
+npm run dev        # bundles + serves dist/ at http://localhost:8080 with a file watcher
+npm run build      # production build (minified) into dist/
+npm run typecheck  # tsc --noEmit
 ```
 
-### Gradle Commands
-```bash
-./gradlew build
-./gradlew clean
-```
+The site is deployed by building `dist/` and serving it via nginx on a VPS (not from this
+machine) — `npm run build` is the only step needed to produce deployable output.
+
+Editing `index.html`, `resume.html`, `projects.html`, `blog.html`, or files under `src/styles/`
+while `npm run dev` is running requires restarting the dev server to pick up the change (only
+the TypeScript bundle is watched); editing files under `src/ts/` hot-rebuilds automatically —
+refresh the browser after a rebuild.
 
 ## Architecture
 
-### Module Structure
-- **site/**: Main Kobweb application module containing pages and application entry point
-- **core/**: Shared library containing routes, constants, and DI configuration
-- **uikit/**: UI components library with reusable widgets and layouts
-
-### Key Dependencies
-- Kobweb 0.23.1 (web framework)
-- Kotlin 2.2.10 with Compose Multiplatform
-- Jetbrains Compose 1.8.2
-- Silk (Kobweb's component library)
-- Font Awesome icons
-
-### Project Structure
 ```
-site/src/jsMain/kotlin/
-├── AppEntry.kt              # Main app entry point with theme management
-├── pages/                   # Page components
-│   ├── Index.kt            # Home page
-│   ├── About.kt            # About me page
-│   ├── Blog.kt             # Blog page
-│   ├── projects/           # Project-related pages
-│   └── resume/             # Resume-related pages
-uikit/src/jsMain/kotlin/
-├── components/
-│   ├── layouts/PageLayout.kt # Main page layout wrapper
-│   └── sections/           # Header/footer sections
-└── widgets/                # Reusable UI components
-core/src/jsMain/kotlin/
-├── Routes.kt               # Route definitions
-├── Constants.kt            # Application constants
-└── di/                     # Dependency injection setup
+index.html / resume.html / projects.html / blog.html   # one real HTML file per page
+src/
+  styles/style.css        # all site CSS: layout, nav/footer/cards, dark/light theme variables
+  ts/
+    main.ts                # registers <site-header>/<site-footer>; imported on every page
+    theme.ts               # dark/light toggle, persisted to localStorage
+    icons.ts               # inline SVG icon strings (no icon font/CDN dependency)
+    site-header.ts          # <site-header> custom element: nav links + theme toggle button
+    site-footer.ts          # <site-footer> custom element: social links + copyright
+    data/resume-data.ts     # typed array of companies/positions/bullets shown on resume.html
+    data/projects-data.ts   # typed array of project entries shown on projects.html
+    pages/resume.ts          # renders resume-data.ts into #experience on resume.html
+    pages/projects.ts        # renders projects-data.ts into #project-list on projects.html
+public/                    # static assets (favicon, project logos, store badges) copied as-is
+esbuild.mjs                 # build script: copies html/css/public into dist/, bundles the
+                             # TS entry points (main, pages/resume, pages/projects)
 ```
 
-### Theme System
-The application supports dark/light theme switching with persistence in localStorage. Theme state is managed in AppEntry.kt with automatic save/restore functionality.
+### Adding a page
 
-### Navigation
-Routes are defined as sealed classes in `core/Routes.kt`. The main navigation structure includes:
-- Home (/)
-- Resume (/resume)
-- About Me (/aboutme)
-- Projects (/projects)
-- Blog (/blog)
+Add a new `.html` file at the repo root following the pattern of the existing pages (same
+`<head>` boilerplate, `<site-header>`/`<site-footer>` elements, a `<script type="module"
+src="/scripts/main.js">` at minimum), add its filename to the `cpSync` loop and, if it needs
+its own script, to `entryPoints` in `esbuild.mjs`.
 
-## Development Notes
+### Theme system
 
-- All Kotlin source files use `jsMain` target for browser compilation
-- The project follows Compose for Web patterns with Kobweb extensions
-- UI components in `uikit` are designed to be reusable across pages
-- PageLayout component provides consistent structure with navigation header and footer
-- Icons use Font Awesome integration through Silk
+Dark is the default. `<html data-theme="light">` switches to light; the attribute is set
+synchronously by an inline script in each page's `<head>` (reading `localStorage` key
+`gregstuffclick:theme`) to avoid a flash of the wrong theme, and toggled at runtime by
+`theme.ts`'s `toggleTheme()`, called from the button rendered by `site-header.ts`.
+
+### Content updates
+
+Resume and project content live in `src/ts/data/*.ts` as plain typed arrays — edit those files
+directly rather than the HTML; the corresponding `src/ts/pages/*.ts` renders them into the page.
 
 ## Testing & Quality
 
-The project structure suggests standard Kotlin testing approaches, though specific test commands should be verified in individual module build files if needed.
+No test suite. Run `npm run typecheck` before committing TypeScript changes.
