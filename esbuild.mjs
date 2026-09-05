@@ -30,8 +30,8 @@ const buildOptions = {
 if (dev) {
   const ctx = await context(buildOptions);
   await ctx.watch();
-  const { host, port } = await ctx.serve({ servedir: outdir, port: 8080 });
-  console.log(`Dev server running at http://${host === '0.0.0.0' ? 'localhost' : host}:${port}`);
+  const { port } = await ctx.serve({ servedir: outdir, port: 8080 });
+  console.log(`Dev server running at http://localhost:${port}`);
 } else {
   await build(buildOptions);
   console.log(`Built to ${outdir}/`);
